@@ -1,6 +1,6 @@
 from django.test import TestCase
 from .models import Image,Profile,Comments,Likes
-
+import datetime as dt
 
 # Create your tests here.
 class ProfileTestClass(TestCase):
@@ -17,3 +17,21 @@ class ProfileTestClass(TestCase):
         self.sharon.save_profile()
         profile = Profile.objects.all()
         self.assertTrue(len(profile) > 0)
+
+class ImageTestClass(TestCase):
+
+    def setUp(self):
+        # Creating a new editor and saving it
+        self.sharon= Editor(first_name = 'sharon', last_name ='andisi', username = 'migidza_andisi', bio = 'pray,love,laugh', email ='sharonandisi.sa@gmail.com')
+        self.sharon.save_editor()
+
+
+    def tearDown(self):
+        Profile.objects.all().delete()
+        Image.objects.all().delete()
+
+    def present_images(self):
+        test_date = '2018-12-17'
+        date = dt.datetime.strptime(test_date, '%Y-%m-%d').date()
+        images_by_date = Article.days_news(date)
+        self.assertTrue(len(images_by_date) == 0)
