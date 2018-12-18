@@ -16,7 +16,8 @@ class Profile(models.Models):
     username = models.CharField(max_length =30)
     bio = models.CharField(max_length =30)
     email = models.CharField()
-
+    
+    
 class Comments(models.Models):
     comments = models.Charfield(max_length =30)
     pub_date = models.DateTimeField(auto_now_add=True)
