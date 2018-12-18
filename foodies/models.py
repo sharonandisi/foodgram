@@ -8,7 +8,13 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile)
     pub_date = models.DateTimeField(auto_now_add=True)
 
+    def save_image(self):
+        self.save()
 
+    def delete_image(self):
+        self.delete()
+    def update_caption(self):
+        self.update()
 
 class Profile(models.Models):
     first_name = models.CharField(max_length =30)
@@ -17,7 +23,16 @@ class Profile(models.Models):
     bio = models.CharField(max_length =30)
     email = models.CharField()
     
-    
+    def __str__(self):
+        return self.first_name
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+    def search_profile(self):
+        self.search()
 class Comments(models.Models):
     comments = models.Charfield(max_length =30)
     pub_date = models.DateTimeField(auto_now_add=True)
