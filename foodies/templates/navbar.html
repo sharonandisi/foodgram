@@ -19,14 +19,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'timelineView' %}">Foodgram</a>
+                <a class="navbar-brand" href="{% url 'present' %}">Foodgram</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">HOME</a></li>
-                    <li><a href="#">SERVICES</a></li>
-                    <li><a href="#">BIOS</a></li>
+                    <li><a href="{%url 'new-image' %}">UPLOAD</a></li>
+                    <li><a href="{% url 'profile' %}">PROFILE</a></li>
                     <li><a href="#">CONTACT</a></li>
                 </ul>
 

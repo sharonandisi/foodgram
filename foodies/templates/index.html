@@ -1,5 +1,6 @@
 {%extends 'all-photos/base.html'%}
 {% load bootstrap3 %}
+{% load static %}
 {% for images_item in images %}
 
 <div class="row">
@@ -14,6 +15,7 @@
     </div>
 
 </div>
+{% endfor %}
 <div class="container-fluid">
 
     <form action="{%url 'present'%}" method="post">
@@ -23,8 +25,8 @@
         <input type="submit" value="Subscribe">
     </form>
 </div>
-{% endblock %}
+
 <!--End of the block content-->
 {% block scripts %} {{block.super}}
-<script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
+<!-- <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script> -->
 {% endblock %}

@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bootstrap3',
-    'foodgram',
+    'foodies',
     'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',

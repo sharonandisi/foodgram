@@ -1,4 +1,4 @@
-{% load bootstrap %}
+{% load bootstrap3 %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
     </head>
     <body>
         <form action="{%url 'new-image'%}" method = "post" enctype = "multipart/form-data">
-            {%csrf_tokens%}
+            
 
             {% bootstrap_form form%}
             <input type="submit" class = "btn btn-lg" value="Post">
