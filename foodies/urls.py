@@ -7,6 +7,7 @@ urlpatterns=[
     url('^$',views.index, name='present'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^new/image$', views.new_image, name='new-image')
 ]
 
 if settings.DEBUG:
