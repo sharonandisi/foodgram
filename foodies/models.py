@@ -1,11 +1,13 @@
 from django.db import models
 import datetime as dt 
+from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 # Create your models here.
 class Image(models.Model):
     image_photo = models.ImageField(upload_to = 'photos/')
     caption = models.CharField(max_length =60)
     title = models.CharField(max_length =60)
-    profile = models.ForeignKey(Profile)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def save_image(self):
@@ -53,7 +55,7 @@ class Comments(models.Models):
     profile = models.ForeignKey(Profile)
 class Likes(models.Models):
     image = models.ForeignKey(Image)
-    
+
 class Follow(models.Model):
     followers = models.ForeignKey(Profile)
     following = models.ForeignKey(Profile)
