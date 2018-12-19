@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to foodgram newsletter. You will find the most exciting posts by foodies for foodies.

@@ -53,6 +53,7 @@ class Comments(models.Models):
     profile = models.ForeignKey(Profile)
 class Likes(models.Models):
     image = models.ForeignKey(Image)
+    
 class Follow(models.Model):
     followers = models.ForeignKey(Profile)
     following = models.ForeignKey(Profile)

@@ -1,17 +1,27 @@
-
-{% for news_item in news %}
+{%extends 'all-photos/base.html'%}
+{% load bootstrap3 %}
+{% for images_item in images %}
 
 <div class="row">
     <!-- displaying News articles -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h2 class="text-center"> {{ news_item.title }} </h2>
+        <h2 class="text-center"> {{ images_item.title }} </h2>
     </div>
 
     <!--Display news Article images  -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <img src="{{news_item.article_image.url}}" class="img-responsive" alt="Image">
+        <img src="{{images_item.photo_image.url}}" class="img-responsive" alt="Image">
     </div>
 
+</div>
+<div class="container-fluid">
+
+    <form action="{%url 'present'%}" method="post">
+        {%csrf_token%}
+
+        {% bootstrap_form letterForm layout='inline' %}
+        <input type="submit" value="Subscribe">
+    </form>
 </div>
 {% endblock %}
 <!--End of the block content-->
