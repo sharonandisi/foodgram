@@ -13,7 +13,6 @@ class Image(models.Model):
     title = models.CharField(max_length =60)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
-    users_liked = models.ManyToManyField(User, related_name='likes')
 
     class Meta:
         ordering = ['-pub_date']
@@ -73,6 +72,13 @@ class Follow(models.Model):
     followers = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
     following = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'following')
 
+class Likes(models.Model):
+    profile = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
+    image = models.ForeignKey(Image)
+
+class Follow(models.Model):
+    follower = models.ForeignKey(User, related_name= 'follower')
+    following = models.ForeignKey(User, related_name= 'following')
 # @receiver(post_save, sender=User)
 # def create_user_profile(sender, instance, created, **kwargs):
 #     if created:
