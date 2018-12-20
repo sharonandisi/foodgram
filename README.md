@@ -4,7 +4,7 @@ An instagram version app but for foodies
 ## Description
 This is an application where users get to create an account , login and upload images to the site. they can like , view and comment on other post, and they can also edit their profiles and delete posts.
 #### Link to deployed site
-
+ https://shaygram.herokuapp.com/
 
 ## Table of content
 1. [Description](#description)
