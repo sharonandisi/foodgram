@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Image, Comments
+from .models import Image, Comments, Profile
 import datetime as dt
 from django.db import transaction
 from django.contrib.auth.models import User
@@ -13,6 +13,10 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     date = dt.date.today()
     images = Image.present_images()
+    # comment = Comments.objects.all()
+    # print(Profile.objects.all())
+    # print(dir(images))
+    # print(images)
     
 
     if request.method == 'POST':
@@ -29,7 +33,7 @@ def index(request):
     else:
         form = NewsLetterForm()
     
-    return render(request, 'index.html', {"date": date, "images":images, "letterForm":form})
+    return render(request, 'index.html', {"date": date, "images":images,"letterForm":form})
 
 
 def search_results(request):
@@ -43,18 +47,18 @@ def search_results(request):
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'all-images/search.html',{"message":message})
+        return render(request, 'all-photos/search.html',{"message":message})
 
 @login_required(login_url='/accounts/login/')
-def new_image(request):
+def new_image(request, user_id):
     current_user = request.user
     if request.method == 'POST':
         form = ImageUpload(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
             image.editor = current_user
-            article.save()
-        return redirect('index')
+            image.save()
+        return redirect('present')
 
     else:
         form = ImageUpload()
@@ -63,7 +67,7 @@ def new_image(request):
 
 def profile(request, user_id):
     images = Image.objects.all()
-    return render(request, 'profile.html', {"images":images})
+    return render(request, 'all-photos/profile.html', {"images":images})
 
 @login_required(login_url='/accounts/login/')
 def profile_edit(request, user_id):
@@ -76,14 +80,14 @@ def profile_edit(request, user_id):
             messages.error(request, ('Error'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'edit-profile.html', {"profile_form": profile_form})
+    return render(request, 'all-photos/edit_profile.html', {"profile_form": profile_form})
 
 
 @login_required(login_url='/accounts/login/')
 def comment(request, id):
     current_user = request.user
     image = Image.objects.get(pk=id)
-    comment = Comments.objects.all()
+    comment = Comments.objects.filter(image=id)
 
     if request.method == 'POST':
         form = CommentForm(request.POST)

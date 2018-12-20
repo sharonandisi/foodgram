@@ -1,18 +1,34 @@
 {% extends 'all-photos/base.html' %}
 {% block content %}
 {{block.super}}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-
-        </title>
-    </head>
-    <body>
-        <div class="container-fluid">
-            
-
+<div class="row">
+        <div class="col-md-3">
+            {% if user.profile.avatar%}
+            <img src="{{ user.profile.avatar.url }}" class="img-fluid profile">
+            {% else%}
+            <img src="" alt="no profile">
+            {% endif%}
         </div>
-    </body>
-</html>
+                <div class="col-md-3">
+                    <h2>{{request.user.username}}</h2>
+                    <a href="{% url 'profile_edit' user.id%}"><input type="button" class="btn btn-outline-secondary btn-sm"
+                            value="Edit Profile"></a>
+                </div>
+                <div class="col-md-8">
+                    <p><span>Followers :</span></p>
+                    <p><span>Following :</span></p>
+                    <p><span>Posts :</span></p>
+                </div>
+    
+    <div class="row">
+        {% for images_item in images%}
+        <div class="col-md-6">
+            <img src="{{images_item.image_photo.url}}" class="img-fluid Post img-thumbnail">
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
 {% endblock %}

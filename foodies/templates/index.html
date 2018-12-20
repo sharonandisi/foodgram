@@ -1,20 +1,31 @@
 {%extends 'all-photos/base.html'%}
 {% load bootstrap3 %}
 {% load static %}
+
+{% block content %}
 {% for images_item in images %}
-
-<div class="row">
+<div class="container">
+    
+    <div class="row">
     <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h2 class="text-center"> {{ images_item.title }} </h2>
+    <div class="card" width = "18rem">
+        <card class="header">
+        <h8 class="text-center"> {{ images_item.profile }} </h8>
+        </card>
+        <card class="body">
+        <p class = "text-center">{{images_item.caption}}</p>
     </div>
-
-    <!--Display news Article images  -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <img src="{{images_item.photo_image.url}}" class="img-responsive" alt="Image">
-    </div>
-
+        <img src="..{{images_item.image_photo.url}}" class="img-responsive" alt="Image">
+        <p>{{ images_item.url }}</p>
+    
+        </card>
+        <card class="footer">
+            <p>{{images_item.title}}</p>
+        </card>
+        </div>
 </div>
+
+
 {% endfor %}
 <div class="container-fluid">
 
@@ -26,7 +37,11 @@
     </form>
 </div>
 
+{% endblock %}
+
 <!--End of the block content-->
 {% block scripts %} {{block.super}}
 <!-- <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script> -->
 {% endblock %}
+
+</html>
