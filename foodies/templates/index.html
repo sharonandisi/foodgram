@@ -10,10 +10,10 @@
     <!-- displaying News articles -->
     <div class="card" width = "18rem">
         <card class="header">
-        <h8 class="text-center"> {{ images_item.profile }} </h8>
+        <p  class="text-center"> <code>{{ images_item.profile }}</code> </p>
         </card>
         <card class="body">
-        <p class = "text-center">{{images_item.caption}}</p>
+        <h3 class = "text-left">{{images_item.caption}}</h3>
     </div>
         <img src="..{{images_item.image_photo.url}}" class="img-responsive" alt="Image">
         <p>{{ images_item.url }}</p>
@@ -21,6 +21,10 @@
         </card>
         <card class="footer">
             <p>{{images_item.title}}</p>
+            <button onclick="like('{{image.id}}')">Like</button>
+            <strong><span id="likespan{{image.id}}">{{image_photo.count_likes}}</span>
+            like{{image.count_likes|pluralize}}</strong>
+
         </card>
         </div>
 </div>

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Image, Comments, Profile
-import datetime as dt
 from django.db import transaction
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -11,8 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
-    date = dt.date.today()
-    images = Image.present_images()
+    images = Image.objects.all()
     # comment = Comments.objects.all()
     # print(Profile.objects.all())
     # print(dir(images))
@@ -33,7 +31,7 @@ def index(request):
     else:
         form = NewsLetterForm()
     
-    return render(request, 'index.html', {"date": date, "images":images,"letterForm":form})
+    return render(request, 'index.html', { "images":images,"letterForm":form})
 
 
 def search_results(request):
