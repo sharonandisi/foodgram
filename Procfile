@@ -1,0 +1,1 @@
+web:gunicorn foodgram --log-file --
