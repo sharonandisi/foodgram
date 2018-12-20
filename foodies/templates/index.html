@@ -7,26 +7,22 @@
 <div class="container">
     
     <div class="row">
-    <!-- displaying News articles -->
-    <div class="card" width = "18rem">
-        <card class="header">
+    <div class = "col-md-3"></div>
+    <div class="col-md-6">
+    <div class="card" style="width:50rem">
         <p  class="text-center"> <code>{{ images_item.profile }}</code> </p>
-        </card>
-        <card class="body">
         <h3 class = "text-left">{{images_item.caption}}</h3>
-    </div>
+    
         <img src="..{{images_item.image_photo.url}}" class="img-responsive" alt="Image">
         <p>{{ images_item.url }}</p>
+        <p>{{images_item.title}}</p>
+        <button onclick="like('{{image.id}}')">Like</button>
+        <strong><span id="likespan{{image.id}}">{{image_photo.count_likes}}</span>
+        like{{image.count_likes|pluralize}}</strong>
+    </div>
     
-        </card>
-        <card class="footer">
-            <p>{{images_item.title}}</p>
-            <button onclick="like('{{image.id}}')">Like</button>
-            <strong><span id="likespan{{image.id}}">{{image_photo.count_likes}}</span>
-            like{{image.count_likes|pluralize}}</strong>
-
-        </card>
-        </div>
+    </div>
+    <div class="col-md-3"></div>
 </div>
 
 
